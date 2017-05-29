@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BlogCrud</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <h1><%= link_to "Posts", posts_path %></h1>
+
+    <% if flash[:notice] %>
+      <div class='alert alert-success'><%= flash[:notice] %></div>
+    <% elsif flash[:alert] %>
+      <div class='alert alert-danger'><%= flash[:alert] %></div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

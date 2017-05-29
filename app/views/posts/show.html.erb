@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <h3><%= @post.title %></h3>
+        <!-- <h3><%= @post&.category&.name %></h3> -->
+        <p><%= @post.body %></p>
+      </div>
+
+      <div class="col-lg-6 col-lg-offset-3">
+          <a href="./<%= @post.id %>/edit" role="button">
+            <span style="font-size: 20px" class="glyphicon glyphicon-edit" arial-hidden="true"</span>
+          </a>
+
+          <%= link_to("", post_path(@post),
+                                method: :delete,
+                                data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove p_delete")%>
+
+          <%= link_to "Back", posts_path, class: "btn btn-primary btn-default pull-right" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <h3>Comments</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-3">
+
+        <h5>
+            <% @comments&.each do |comment| %>
+              <%= comment.body %>
+
+              <%= link_to("", [@post, comment],
+              method: :delete,
+              data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove p_delete pull-right")%>
+        </h5>
+        <br>
+        <hr>
+        <% end %>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <%= form_for [@post, @comment] do |f| %>
+          <%= f.text_area :body, placeholder: 'Add a comment', class: "comment-textarea" %>
+          <%= f.submit "Add", class: "btn btn-default pull-right" %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>

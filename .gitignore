@@ -11,11 +11,6 @@
 /log/*
 /tmp/*
 
-/app/*
-/db/*
-
-/bin
-
 !/log/.keep
 !/tmp/.keep
 
