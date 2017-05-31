@@ -1,27 +1,27 @@
+
 <div class="container">
 
   <div class="row">
 
-      <div class="col-sm-9 col-sm-offset-1 col-md-7 col-md-offset-2 col-lg-6 col-lg-offset-3">
+    <!-- <div class="col-sm-9 col-sm-offset-1 col-md-7 col-md-offset-2 col-lg-6 col-lg-offset-3"> -->
+      <div class="col-sm-12 col-md-12 col-lg-12 ">
         <%= link_to 'Add a Post', new_post_path, class: "btn btn-primary btn-block" %>
       </div>
 
   </div>
   <br />
 
-  <div class="row">
 
-      <div class="col-sm-9 col-sm-offset-1 col-md-7 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <% @posts.each do |post| %>
-            <h4>
+        <div class="col-sm-12 col-md-6  col-lg-4 col-xl-3 posts">
+              <%= image_tag 'prince.jpg', class: "img-responsive" %>
               <%= link_to post.title, post_path(post) %>
 
-              <a class="pull-right" role="button" data-toggle="collapse" data-parent="#accordion" href="posts/<%= post.id %>" aria-expanded="true" aria-controls="posts/<%= post.id %>">
+              <a class="pull-right" role="button" data-toggle="collapse" data-parent="#accordion" href="#post_<%= post.id %>" aria-expanded="true" aria-controls="post_<%= post.id %>">
                 show
               </a>
-            </h4>
 
-            <div class="collapse" id="posts/<%= post.id %>">
+            <div class="collapse" id="post_<%= post.id %>">
               <br />
               <br />
               <p><string>Category:<br /> </string><%= post&.category&.name %></p>
@@ -31,9 +31,7 @@
             <hr />
 
 
+          </div>
         <% end %>
-      </div>
-
-  </div>
 
 </div>

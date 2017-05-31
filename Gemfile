@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
 gem 'hirb'
 gem 'interactive_editor'
 gem 'awesome_print'
