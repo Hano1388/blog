@@ -1,10 +1,23 @@
 <div class="container">
-  <div class="jumbotron">
+  <!-- <div class="jumbotron"> -->
     <div class="row">
       <div class="col-lg-6 col-lg-offset-3">
+
         <h3><%= @post.title %></h3>
         <!-- <h3><%= @post&.category&.name %></h3> -->
-        <p><%= @post.body %></p>
+        <%= image_tag 'prince.jpg', class: "img-responsive" %>
+        <p><%= @post.body %>
+          <div class="row">
+          <div class="pull-right"><i><%= @post.created_at.strftime("%B %d, %Y") %></i></div>
+          </div>
+        </p>
+        <div>
+          <i class="fa fa-heart-o fa-2x" aria-hidden="true" style="display: inline"></i>
+          <h4 style="display: inline"><%= @post.id %></h4>
+          <i class="fa fa-bookmark-o fa-2x" aria-hidden="true" style="float: right;"></i>
+        </div>
+        <br>
+        <br>
       </div>
 
       <div class="col-lg-6 col-lg-offset-3">
@@ -17,8 +30,24 @@
                                 data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove p_delete")%>
 
           <%= link_to "Back", posts_path, class: "btn btn-primary btn-default pull-right" %>
+          <h4>Author's Name:</h4>
+      </div>
+
+
+    </div>
+    <br>
+    <br>
+
+
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <%= form_for [@post, @comment] do |f| %>
+          <%= f.text_area :body, placeholder: 'Add a comment', class: "comment-textarea" %>
+          <%= f.submit "Add", class: "btn btn-default pull-right" %>
+        <% end %>
       </div>
     </div>
+
 
     <div class="row">
       <div class="col-lg-6 col-lg-offset-3">
@@ -45,14 +74,5 @@
 
 
 
-    <div class="row">
-      <div class="col-lg-6 col-lg-offset-3">
-        <%= form_for [@post, @comment] do |f| %>
-          <%= f.text_area :body, placeholder: 'Add a comment', class: "comment-textarea" %>
-          <%= f.submit "Add", class: "btn btn-default pull-right" %>
-        <% end %>
-      </div>
-    </div>
-
-  </div>
+  <!-- </div> -->
 </div>

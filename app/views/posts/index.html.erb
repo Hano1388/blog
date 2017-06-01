@@ -1,5 +1,51 @@
-
 <div class="container">
+
+<div class="container visible-lg">
+  <div class="row">
+    <div class="col-lg-8">
+      <%= image_tag 'prince.jpg', class: "img-responsive" %>
+    </div>
+
+    <div class="col-lg-4">
+      <h3>Most Liked</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Magnam cum et totam accusantium? Veritatis, voluptatum,
+        consequatur? Similique atque maxime recusandae dignissimos
+        esse, quaerat magnam sit excepturi, ab, architecto facilis
+        earum.
+      </p>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <i class="fa fa-heart-o fa-2x" aria-hidden="true" style="display: inline"></i>
+      <h4 style="display: inline">476</h4>
+      <i class="fa fa-bookmark-o fa-2x" aria-hidden="true" style="float: right;"></i>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-lg-8">
+      <h3>Post Title</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Magnam cum et totam accusantium? Veritatis, voluptatum,
+        consequatur? Similique atque maxime recusandae dignissimos
+        esse, quaerat magnam sit excepturi, ab, architecto facilis
+        earum.
+      </p>
+      <h4><a href="#">Post Author Name</a></h4>
+      <i><%= Time.now() %></i>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+
+
 
   <div class="row">
 
@@ -9,29 +55,30 @@
       </div>
 
   </div>
-  <br />
+      <br />
+            <% @posts.each_slice(3) do |group| %>
+              <div class="row">
+                <% group.each do |post| %>
+                  <div class="col-sm-12 col-md-12  col-lg-4 col-xl-3 posts">
+                    <%= image_tag 'prince.jpg', class: "img-responsive" %>
+                    <div>
+                      <i class="fa fa-heart-o fa-2x" aria-hidden="true" style="display: inline"></i>
+                      <h4 style="display: inline"><%= post.id %></h4>
+                      <i class="fa fa-bookmark-o fa-2x" aria-hidden="true" style="float: right;"></i>
+                    </div>
 
+                    <%= link_to post.title, post_path(post) %>
 
-        <% @posts.each do |post| %>
-        <div class="col-sm-12 col-md-6  col-lg-4 col-xl-3 posts">
-              <%= image_tag 'prince.jpg', class: "img-responsive" %>
-              <%= link_to post.title, post_path(post) %>
-
-              <a class="pull-right" role="button" data-toggle="collapse" data-parent="#accordion" href="#post_<%= post.id %>" aria-expanded="true" aria-controls="post_<%= post.id %>">
-                show
-              </a>
-
-            <div class="collapse" id="post_<%= post.id %>">
-              <br />
-              <br />
-              <p><string>Category:<br /> </string><%= post&.category&.name %></p>
-              <p><string>Body:<br />  </string><%= post.body %></p>
+                    <br />
+                    <br />
+                    <!-- <p><string>Category:<br /> </string><%= post&.category&.name %></p> -->
+                    <p><string>Body:<br />  </string><%= post.body %></p>
+                    <h4><a href="#">Post Author Name</a></h4>
+                    <div><%= post.created_at.strftime("%B %d, %Y") %></div>
+                  </div>
+                  <hr class="hidden-lg">
+                <% end %>
             </div>
-            <br />
-            <hr />
-
-
-          </div>
-        <% end %>
+          <% end %>
 
 </div>
