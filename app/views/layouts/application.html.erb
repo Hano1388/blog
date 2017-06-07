@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-inverse navbar-custom navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" arial-controls ="navbar">
@@ -30,8 +30,14 @@
                 <input type="text" class="form-control" placeholder="Search..." name="" value="">
               </form>
             </li>
-            <li><a class="nav-link" href="#">Sign Up</a></li>
-            <li><a class="nav-link" href="#">Login</a></li>
+            <% if current_user %>
+              <li>Logged in as </li>
+              <li> <%= current_user.first_name %></li>
+              <li><%= link_to "Log Out", logout_path, method: 'delete'  %></li>
+            <% else %>
+            <li><%= link_to 'Sign up', signup_path %></li>
+            <li><%= link_to 'Log In', login_path %></li>
+            <% end %>
             </ul>
 
             <ul class="nav navbar-nav">
