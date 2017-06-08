@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
 
   def new
+    @user = User.new
+    @isLogin = true
+    render 'users/new'
   end
 
   def create
@@ -10,10 +13,11 @@ class SessionsController < ApplicationController
       redirect_to posts_path, notice: "Logged in!"
     else
       flash[:alert] = "Email or password is invalid"
-      render :new
+      # render :new
+      render 'users/new'
     end
   end
-  
+
   def destroy
     session[:user_id] = nil
     redirect_to posts_path, notice: "Logged out"

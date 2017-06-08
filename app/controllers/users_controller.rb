@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
 
   def new
+    @isLogin = false
     @user = User.new
+
   end
 
   def create
