@@ -7,12 +7,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_email params[:email]
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
+    # byebug
+    @user = User.find_by_email params[:email]
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
       redirect_to posts_path, notice: "Logged in!"
     else
-      flash[:alert] = "Email or password is invalid"
+      flash[:alert] = "Wrong email or password"
       # render :new
       render 'users/new'
     end
@@ -20,7 +21,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to posts_path, notice: "Logged out"
+    redirect_to posts_path, notice: "Signed out"
   end
 
 end

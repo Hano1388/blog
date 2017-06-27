@@ -75,9 +75,10 @@
             <% @comments&.each do |comment| %>
               <%= comment.body %>
 
-              <%= link_to("", [@post, comment],
-              method: :delete,
-              data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove p_delete pull-right")%>
+                <%= link_to("", [@post, comment],
+                method: :delete,
+                data: {confirm: "Are you sure?"},
+                class: "glyphicon glyphicon-remove p_delete pull-right")%>
         </h5>
         <br>
         <hr>

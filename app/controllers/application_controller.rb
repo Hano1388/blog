@@ -1,14 +1,24 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  private
+  def user_signed_in?
+    if session[:user_id].present? && current_user.nil?
+      session[:user_id] = nil
+    end
+    session[:user_id].present?
+  end
+
+  helper_method :user_signed_in?
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find_by(id: session[:user_id])
   end
-  helper_method :current_user
 
-  def authorize!
-    redirect_to login_path, alert: 'Not authorized' if current_user.nil?
+  helper_method :current_user # :user_signed_in?
+
+  def authenticate_user!
+    if !user_signed_in?
+      redirect_to new_session_path, notice: "Please sign in"
+    end
   end
 end
