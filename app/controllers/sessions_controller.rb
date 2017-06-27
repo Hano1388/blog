@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
 
       redirect_to posts_path, notice: "Logged in!"
     else
-      flash[:alert] = "Wrong email or password"
+      flash.now[:alert] = "Wrong email or password"
       # render :new
       render 'users/new'
     end

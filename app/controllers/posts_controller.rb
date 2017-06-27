@@ -1,10 +1,6 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :find_post, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @posts = Post.all.order(updated_at: :DESC)
-  end
 
   def new
     @post = Post.new
@@ -26,6 +22,10 @@ class PostsController < ApplicationController
     # @post = Post.find params[:id]
     @comment = Comment.new
     @comments = @post.comments
+  end
+  
+  def index
+    @posts = Post.all.order(updated_at: :DESC)
   end
 
   def edit
