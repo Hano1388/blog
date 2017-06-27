@@ -5,6 +5,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
 
   has_many :posts, dependent: :nullify
+  has_many :comments, dependent: :nullify
 
   before_create { generate_token(:auth_token)}
 

@@ -38,12 +38,13 @@
             <span style="font-size: 20px" class="glyphicon glyphicon-edit" arial-hidden="true"</span>
           </a>
 
+          <% if user_signed_in? && @post.user == current_user %>
           <%= link_to("", post_path(@post),
                                 method: :delete,
                                 data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove p_delete")%>
-
+          <% end %>
           <%= link_to "Back", posts_path, class: "btn btn-primary btn-default pull-right" %>
-          <h4>Author's Name: <%= @post.user.full_name %></h4>
+          <h4>Author's Name: <%= @post.user&.full_name %></h4>
       </div>
 
 
@@ -75,11 +76,12 @@
         <h5>
             <% @comments&.each do |comment| %>
               <%= comment.body %>
-
+              <% if user_signed_in? && comment.user == current_user %>
                 <%= link_to("", [@post, comment],
                 method: :delete,
                 data: {confirm: "Are you sure?"},
                 class: "glyphicon glyphicon-remove p_delete pull-right")%>
+                <% end %>
         </h5>
         <br>
         <hr>
