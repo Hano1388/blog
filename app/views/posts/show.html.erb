@@ -43,7 +43,7 @@
                                 data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove p_delete")%>
 
           <%= link_to "Back", posts_path, class: "btn btn-primary btn-default pull-right" %>
-          <h4>Author's Name:</h4>
+          <h4>Author's Name: <%= @post.user.full_name %></h4>
       </div>
 
 
@@ -51,15 +51,16 @@
     <br>
     <br>
 
-
-    <div class="row">
-      <div class="col-lg-6 col-lg-offset-3">
-        <%= form_for [@post, @comment] do |f| %>
-          <%= f.text_area :body, placeholder: 'Add a comment', class: "comment-textarea" %>
-          <%= f.submit "Add", class: "btn btn-default pull-right" %>
-        <% end %>
+    <% if user_signed_in? && current_user != @post.user %>
+      <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+          <%= form_for [@post, @comment] do |f| %>
+            <%= f.text_area :body, placeholder: 'Add a comment', class: "comment-textarea" %>
+            <%= f.submit "Add", class: "btn btn-default pull-right" %>
+          <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
 
 
     <div class="row">
